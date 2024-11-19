@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -131,7 +131,9 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Define directories where Django will look for static files
-
+STATICFILES_DIRS = [
+    BASE_DIR / "static",  # Add a global 'static' directory if needed
+]
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 CART_SESSION_ID = 'cart'
@@ -139,4 +141,3 @@ CART_SESSION_ID = 'cart'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 RAZOR_KEY_ID = 'rzp_test_6DO6fVM468pejE'
 RAZOR_KEY_SECRET = '9ldqP8NZjzGuEhrXuL6CQKDA'
-STATIC_ROOT = BASE_DIR / 'static'

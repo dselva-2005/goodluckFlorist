@@ -2,7 +2,7 @@ from django.shortcuts import render,get_object_or_404
 from .models import OrderItem,Order
 from .forms import OrderCreateForm
 from cart.cart import Cart
-from .tasks import order_created
+from .tasks import order_created,payment_completed
 from django.contrib import messages
 import razorpay
 from django.conf import settings
@@ -71,6 +71,7 @@ def order_create(request):
 
             else:
                 order_created.delay(order.id)
+                payment_completed(order.id)
                 messages.success(request,'Your order is placed successfully')
                 return render(request,
                 'orders/order/created.html',
@@ -119,7 +120,8 @@ def paymenthandler(request):
                 order.paid = True
                 order.online_order_id = payment_id
                 order.save()
-                order_created.delay(order_id)
+                order_created.delay(order.id)
+                payment_completed(order_id)
                 try:
                     # capture the payemt
                     razorpay_client.payment.capture(payment_id, amount)
@@ -156,5 +158,5 @@ def admin_order_pdf(request, order_id):
  html = render_to_string('orders/order/pdf.html',{'order': order})
  response = HttpResponse(content_type='application/pdf')
  response['Content-Disposition'] = f'filename=order_{order.id}.pdf'
- weasyprint.HTML(string=html).write_pdf(response,stylesheets=[weasyprint.CSS(settings.STATIC_ROOT / 'css/pdf.css')])
+ weasyprint.HTML(string=html).write_pdf(response,stylesheets=[weasyprint.CSS(settings.BASE_DIR / 'static/css/pdf.css')])
  return response
