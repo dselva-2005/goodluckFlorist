@@ -8,5 +8,5 @@
     {% endblock message %}
  <h1>Thank you</h1>
  <p>Your order has been successfully completed. Your order number is
- <strong>{{ order.id }}</strong>.</p>
+ <strong>{{ order.id }}</strong>. Return <a href="{% url "shop:home" %}">Home</a></p>
 {% endblock %}

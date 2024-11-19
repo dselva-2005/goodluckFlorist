@@ -71,7 +71,7 @@ def order_create(request):
 
             else:
                 order_created.delay(order.id)
-                payment_completed(order.id)
+                payment_completed.delay(order.id)
                 messages.success(request,'Your order is placed successfully')
                 return render(request,
                 'orders/order/created.html',
@@ -121,7 +121,7 @@ def paymenthandler(request):
                 order.online_order_id = payment_id
                 order.save()
                 order_created.delay(order.id)
-                payment_completed(order_id)
+                payment_completed.delay(order_id)
                 try:
                     # capture the payemt
                     razorpay_client.payment.capture(payment_id, amount)
