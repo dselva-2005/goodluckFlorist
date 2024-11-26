@@ -172,3 +172,5 @@ LOGGING = {
         },
     },
 }
+RAZOR_KEY_ID = 'rzp_test_6DO6fVM468pejE'
+RAZOR_KEY_SECRET = '9ldqP8NZjzGuEhrXuL6CQKDA'
