@@ -78,7 +78,6 @@
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script>
         document.getElementById('pay-btn').onclick = function (e) {
-            e.preventDefault();
             // Initialize Razorpay Checkout
             var options = {
                 key: "{{ razorpay_merchant_key }}", // Razorpay Merchant Key
@@ -91,6 +90,7 @@
             };
             var rzp1 = new Razorpay(options);
             rzp1.open();
+            e.preventDefault();
         };
     </script>
 </body>
