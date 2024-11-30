@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-s97*kwc56x(_+a2qc&oyhf=y278$9n%921v6#i9vy-@-5iid_7
 DEBUG = False
 
 # Update this with your VM's external IP or domain name
-ALLOWED_HOSTS = ['35.209.51.219', 'yourdomain.com']
+ALLOWED_HOSTS = ['35.209.51.219', 'yourdomain.com','omicwears.sytes.net']
 
 
 # Application definition
