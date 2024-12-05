@@ -51,4 +51,11 @@ class Product(models.Model):
     def __str__(self):
         return self.name
     
-    
+
+class ProductImage(models.Model):
+    name = models.CharField(max_length=30)
+    product = models.ForeignKey(Product,related_name='images',on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='products/%Y/%m/%d/')
+
+    def __str__(self):
+        return self.name
