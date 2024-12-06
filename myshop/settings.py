@@ -23,16 +23,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-s97*kwc56x(_+a2qc&oyhf=y278$9n%921v6#i9vy-@-5iid_7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = False
+DEBUG = False
 
 # # Update this with your VM's external IP or domain name
-# ALLOWED_HOSTS = ['35.209.51.219', 'yourdomain.com','omicwears.sytes.net']
+ALLOWED_HOSTS = ['35.209.29.186', 'yourdomain.com','omicwears.sytes.net']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
 
-# Update this with your VM's external IP or domain name
-ALLOWED_HOSTS = ['*']
+# # Update this with your VM's external IP or domain name
+# ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -115,11 +115,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 LANGUAGE_CODE = 'en-us'
 
-# TIME_ZONE = 'UTC'
+TIME_ZONE = 'UTC'
 
-# USE_I18N = True
+USE_I18N = True
 
-# USE_TZ = True
+USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
@@ -138,12 +138,12 @@ MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 # Security settings for production
-# SECURE_SSL_REDIRECT = True  # Enable only if using HTTPS
-# SESSION_COOKIE_SECURE = True
-# CSRF_COOKIE_SECURE = True
-# SECURE_BROWSER_XSS_FILTER = True
-# SECURE_CONTENT_TYPE_NOSNIFF = True
-# X_FRAME_OPTIONS = 'DENY'
+SECURE_SSL_REDIRECT = True  # Enable only if using HTTPS
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+X_FRAME_OPTIONS = 'DENY'
 SECURE_CROSS_ORIGIN_OPENER_POLICY = "same-origin-allow-popups"
 
 # Default primary key field type
@@ -152,6 +152,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Session settings for cart
 CART_SESSION_ID = 'cart'
 
+#looging email message to your console
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # # Email backend for production (optional, update credentials)
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # EMAIL_HOST = 'smtp.your-email-provider.com'
@@ -161,23 +163,23 @@ CART_SESSION_ID = 'cart'
 # EMAIL_HOST_PASSWORD = 'your-email-password'
 
 # Logging configuration (optional but recommended)
-# LOGGING = {
-#     'version': 1,
-#     'disable_existing_loggers': False,
-#     'handlers': {
-#         'file': {
-#             'level': 'DEBUG',
-#             'class': 'logging.FileHandler',
-#             'filename': BASE_DIR / 'django_debug.log',
-#         },
-#     },
-#     'loggers': {
-#         'django': {
-#             'handlers': ['file'],
-#             'level': 'DEBUG',
-#             'propagate': True,
-#         },
-#     },
-# }
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': BASE_DIR / 'django_debug.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
 RAZOR_KEY_ID = 'rzp_test_6DO6fVM468pejE'
 RAZOR_KEY_SECRET = '9ldqP8NZjzGuEhrXuL6CQKDA'
