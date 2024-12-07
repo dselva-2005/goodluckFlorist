@@ -15,7 +15,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
@@ -25,18 +24,10 @@ SECRET_KEY = 'django-insecure-s97*kwc56x(_+a2qc&oyhf=y278$9n%921v6#i9vy-@-5iid_7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-# # Update this with your VM's external IP or domain name
-ALLOWED_HOSTS = ['35.209.29.186', 'yourdomain.com','omicwears.sytes.net']
-
-# SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-
-# # Update this with your VM's external IP or domain name
-# ALLOWED_HOSTS = ['*']
-
+# Update this with your VM's external IP or domain name
+ALLOWED_HOSTS = ['www.goodluckflorist.in', 'goodluckflorist.in']
 
 # Application definition
-
 INSTALLED_APPS = [
     # default apps
     'django.contrib.admin',
@@ -45,11 +36,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
     # user defined apps
     'shop.apps.ShopConfig',
     'cart.apps.CartConfig',
     'orders.apps.OrdersConfig',
     'payment.apps.PaymentConfig',
+    
     # thirdparty apps
 ]
 
@@ -84,7 +77,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'myshop.wsgi.application'
 
-
 # Database
 # Using SQLite3 for production
 DATABASES = {
@@ -93,7 +85,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
@@ -111,16 +102,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = 'static/'
@@ -138,7 +124,7 @@ MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 # Security settings for production
-SECURE_SSL_REDIRECT = True  # Enable only if using HTTPS
+#SECURE_SSL_REDIRECT = True  # Enable only if using HTTPS
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 SECURE_BROWSER_XSS_FILTER = True
@@ -152,8 +138,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Session settings for cart
 CART_SESSION_ID = 'cart'
 
-#looging email message to your console
+# Logging email message to your console
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 # # Email backend for production (optional, update credentials)
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # EMAIL_HOST = 'smtp.your-email-provider.com'
@@ -181,5 +168,10 @@ LOGGING = {
         },
     },
 }
+
 RAZOR_KEY_ID = 'rzp_test_6DO6fVM468pejE'
 RAZOR_KEY_SECRET = '9ldqP8NZjzGuEhrXuL6CQKDA'
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://goodluckflorist.in',
+]
