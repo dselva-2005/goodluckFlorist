@@ -257,7 +257,7 @@
                 const productid = event.target.parentNode.dataset.productid
                 const form = document.createElement('form')
                 form.method = 'POST'
-                form.action = `{{ request.scheme }}://{{ request.get_host }}/cart/add/${productid}/`
+                form.action = `{{ https }}://{{ request.get_host }}/cart/add/${productid}/`
                 form.innerHTML = `{{ cart_product_form }}{% csrf_token %}`
                 document.body.appendChild(form);
                 form.submit()
