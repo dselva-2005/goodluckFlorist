@@ -35,3 +35,6 @@ def home(request):
         products = Product.objects.all()
 
    return render(request,'shop/home.html',{'products':products})
+
+def verify(request):
+    return render(request,'shop/googleb0dbb8bde61b8b0b.html')
