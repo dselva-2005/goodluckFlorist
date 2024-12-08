@@ -79,7 +79,10 @@
                             <ol class="carousel-indicators">
                                 <li class="active" data-target="#product_details_slider" data-slide-to="0" style="background-image: url({{ product.image.url }});">
                                 </li>
-                                {% with count=product.images.count() %}{% endwith %}
+                                {% for image in product.images.all %}
+                                    <li class="active" data-target="#product_details_slider" data-slide-to="{{ forloop.counter }}" style="background-image: url({{ image.image.url }});">
+                                    </li>
+                                {% endfor %}
                             </ol>
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
@@ -87,21 +90,13 @@
                                         <img class="d-block w-100" src="{{ product.image.url }}"  alt="First slide">
                                     </a>
                                 </div>
-                                <div class="carousel-item">
-                                    <a class="gallery_img" href="{% static 'img/product-img/pro-big-2.jpg' %}" >
-                                        <img class="d-block w-100" src="{% static 'img/product-img/pro-big-2.jpg' %}"  alt="Second slide">
-                                    </a>
-                                </div>
-                                <div class="carousel-item">
-                                    <a class="gallery_img" href="{% static 'img/product-img/pro-big-3.jpg' %}" >
-                                        <img class="d-block w-100" src="{% static 'img/product-img/pro-big-3.jpg' %}"  alt="Third slide">
-                                    </a>
-                                </div>
-                                <div class="carousel-item">
-                                    <a class="gallery_img" href="img/product-img/pro-big-4.jpg' %}" >
-                                        <img class="d-block w-100" src="{% static 'img/product-img/pro-big-4.jpg' %}"  alt="Fourth slide">
-                                    </a>
-                                </div>
+                                {% for image in product.images.all %}
+                                    <div class="carousel-item">
+                                        <a class="gallery_img" href="{{ image.image.url }}" >
+                                            <img class="d-block w-100" src="{{ image.image.url }}" >
+                                        </a>
+                                    </div>
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
@@ -111,7 +106,7 @@
                         <!-- Product Meta Data -->
                         <div class="product-meta-data">
                             <div class="line"></div>
-                            <p class="product-price">₹180</p>
+                            <p class="product-price">₹{{ product.price }}</p>
                             <a >
                                 <h6>{{ product.name }}</h6>
                             </a>
@@ -129,11 +124,15 @@
                                 </div>
                             </div>
                             <!-- Avaiable -->
-                            <p class="avaibility"><i class="fa fa-circle"></i> In Stock</p>
+                             {% if product.available %}
+                                <p class="avaibility"><i class="fa fa-circle"></i> In Stock</p>
+                             {% else %}
+                                <p class="out-of-stock"><i class="fa fa-times-circle"></i> Out of Stock</p>
+                             {% endif %}
                         </div>
 
                         <div class="short_overview my-5">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid quae eveniet culpa officia quidem mollitia impedit iste asperiores nisi reprehenderit consequatur, autem, nostrum pariatur enim?</p>
+                            <p>{{ product.description }}</p>
                         </div>
 
                         <!-- Add to Cart Form -->
