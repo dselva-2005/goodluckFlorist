@@ -1,4 +1,5 @@
 {% extends "shop/base.html" %}
+{% load shop_tags %}
 {% load static %}
 {% block title %}Checkout{% endblock title %}
 {% block content %}
@@ -198,7 +199,7 @@
                             <div class="product-img">
                                 <img src="{{ product.image.url }}"  alt="">
                                 <!-- Hover Thumb -->
-                                <img class="hover-img" src="{% static 'img/product-img/product2.jpg' %}"  alt="">
+                                <img class="hover-img" src="{% getSingleImg product.id %}"  alt="">
                             </div>
 
                             <!-- Product Description -->

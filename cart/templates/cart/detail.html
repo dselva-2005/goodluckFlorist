@@ -84,6 +84,7 @@
                       <th>Name</th>
                       <th>Price</th>
                       <th>Quantity</th>
+                      <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -98,26 +99,28 @@
                           /></a>
                         </td>
                         <td class="cart_product_desc">
-                          <h5>White Modern Chair</h5>
+                          <h5>{{ product.name }}</h5>
                         </td>
                         <td class="price">
-                          <span>₹{{ item.total_price }}</span>
+                          <span style="font-size: 14px;">${{ item.total_price }}</span>
                         </td>
                         <td class="qty">
                           <div class="qty-btn d-flex">
-                            <form class="quantity" action="{% url "cart:cart_remove" product.id %}" method="post">
-                               <input type="submit" value="Remove">
-                               {% csrf_token %}
-                            </form>
                             <div class="quantity">
                               <form action="{% url "cart:cart_add" product.id %}" method="post">
                                  {{ item.update_quantity_form.quantity }}
                                  {{ item.update_quantity_form.override }}
-                                 <input type="submit" value="Update">
+                                 <input type="submit" value="Update" style="font-size: 12px;background: white;font-style: bold;">
                                  {% csrf_token %}
                               </form>
                             </div>
                           </div>
+                        </td>
+                        <td>
+                          <form class="quantity" action="{% url "cart:cart_remove" product.id %}" method="post">
+                            <input type="submit" value="Remove" style="font-size: 12px;border: none;background: white;font-style: bold;">
+                            {% csrf_token %}
+                         </form>
                         </td>
                       </tr>
                       {% endwith %}
@@ -130,9 +133,9 @@
               <div class="cart-summary">
                 <h5>Cart Total</h5>
                 <ul class="summary-table">
-                  <li><span>subtotal:</span> <span>₹{{ cart.get_total_price }}</span></li>
+                  <li><span>subtotal:</span> <span>${{ cart.get_total_price }}</span></li>
                   <li><span>delivery:</span> <span>Free</span></li>
-                  <li><span>total:</span> <span>₹{{ cart.get_total_price }}</span></li>
+                  <li><span>total:</span> <span>${{ cart.get_total_price }}</span></li>
                 </ul>
                 <div class="cart-btn mt-100">
                   <a href="{% url "orders:order_create" %}" class="btn amado-btn w-100">Checkout</a>
