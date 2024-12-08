@@ -1,6 +1,7 @@
 from django.shortcuts import render,get_object_or_404
 from .models import Product,Category
 from cart.forms import CartAddProductForm
+from django.contrib.postgres.search import SearchRank,SearchVector,SearchQuery
 # Create your views here.
 
 def product_list(request,category_slug=None):
@@ -44,3 +45,25 @@ def contact_page(request):
 
 def policies_page(request):
     return render(request,'shop/policies.html')
+
+
+def post_search(request):
+    query = None
+    results = []
+    
+    if 'search' in request.GET:
+        query = request.GET.get('search')
+        print(query)
+        search_vector = SearchVector('name')
+        search_query = SearchQuery(query)
+
+        results = Product.objects.annotate(
+            search=search_vector,
+            rank=SearchRank(search_vector, search_query)
+        ).filter(search=search_query).order_by('-rank')
+        print(results)
+    return render(request, 'shop/search.html', {
+        'query': query,
+        'results': results,
+    })
+
