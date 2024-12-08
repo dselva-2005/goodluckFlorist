@@ -16,6 +16,7 @@ def product_list(request,category_slug=None):
                             {'category': category,
                             'categories': categories,
                             'products': products,
+                            'total_product_count': len(products),
                             'cart_product_form': cart_product_form})
 
 def product_detail(request, id, slug):
