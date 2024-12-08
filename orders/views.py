@@ -56,7 +56,7 @@ def order_create(request):
                 })
 
                 razorpay_order_id = razorpay_order['id']
-                callback_url = request.build_absolute_uri(reverse('paymenthandler'))
+                callback_url = request.build_absolute_uri(reverse('paymenthandler')).replace('http://','https://')
 
                 # we need to pass these details to frontend.
                 context = {}
