@@ -1,5 +1,109 @@
 {% extends "shop/base.html" %}
+{% load static %}
+{% block title %}Search - Goodluck Florist{% endblock %}
 
-{% for result in results %}
-    {{ result.name }}
-{% endfor %}
+{% block content %}
+<!-- ##### Main Content Wrapper Start ##### -->
+<div class="main-content-wrapper d-flex clearfix">
+
+    <!-- Mobile Nav (max width 767px)-->
+    <div class="mobile-nav">
+        <!-- Navbar Brand -->
+        <div class="amado-navbar-brand">
+            <a href="/"><img src="{% static 'img/core-img/logo.png' %}" alt=""></a>
+        </div>
+        <!-- Navbar Toggler -->
+        <div class="amado-navbar-toggler">
+            <span></span><span></span><span></span>
+        </div>
+    </div>
+
+    <!-- Header Area Start -->
+    <header class="header-area clearfix">
+        <!-- Close Icon -->
+        <div class="nav-close">
+            <i class="fa fa-close" aria-hidden="true"></i>
+        </div>
+        <!-- Logo -->
+        <div class="logo">
+            <a href="/"><img src="{% static 'img/core-img/logo.png' %}" alt=""></a>
+        </div>
+        <!-- Amado Nav -->
+        <nav class="amado-nav">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/shop">Shop</a></li>
+                <li><a href="/cart">Cart</a></li>
+                <li class="active"><a href="/contact">Contact Us</a></li>
+            </ul>
+        </nav>
+        <!-- Button Group -->
+        <div class="amado-btn-group mt-30 mb-100">
+            <a href="#" class="btn amado-btn mb-15">%Discount%</a>
+            <a href="#" class="btn amado-btn active">New this week</a>
+        </div>
+        <!-- Cart Menu -->
+        <div class="cart-fav-search mb-100">
+            <a href="/cart" class="cart-nav"><img src="{% static 'img/core-img/cart.png' %}" alt=""> Cart <span>({{ cart|length }})</span></a>
+            <a href="#" class="fav-nav"><img src="{% static 'img/core-img/favorites.png' %}" alt=""> Favourite</a>
+            <a href="#" class="search-nav"><img src="{% static 'img/core-img/search.png' %}" alt=""> Search</a>
+        </div>
+        <!-- Social Button -->
+        <div class="social-info d-flex justify-content-between">
+            <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+        </div>
+    </header>
+    <!-- Header Area End -->
+
+    <!-- ##### Contact Area Start ##### -->
+    <div class="single-product-area section-padding-100 clearfix">
+        <div class="container">
+
+            <!-- Policies and Terms Section -->
+            <div class="row">
+                <div class="col-12">
+                    <form method="get" action="{% url 'shop:post_search' %}" class="my-4">
+                        <div class="input-group">
+                            <input 
+                                type="text" 
+                                name="search" 
+                                value="{{ request.GET.search }}" 
+                                placeholder="Search for flowers, bouquets, and more..." 
+                                class="form-control" 
+                                required>
+                            <button style="border-radius: 0%;" type="submit" class="btn btn-dark text-white">Search</button>
+                        </div>
+                    </form>
+
+                    {% if results %}
+                        <div class="row">
+                            {% for item in results %}
+                                <div class="col-md-4 mb-4">
+                                    <div class="card h-100 shadow-sm">
+                                        <img src="{{ item.image.url }}" class="card-img-top" alt="{{ item.name }}">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ item.name }}</h5>
+                                            <p class="card-text">{{ item.description|truncatewords:20 }}</p>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <span class="text-warning">₹{{ item.price }}</span>
+                                                <a href="{{ item.get_absolute_url }}" class="text-warning" style="font-size: 1rem;">view details</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <p class="text-center text-muted mt-5">No results found. Try searching for something else!</p>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- ##### Contact Area End ##### -->
+</div>
+{% endblock %}
