@@ -37,3 +37,9 @@ def home(request):
 
 def verify(request):
     return render(request,'shop/googleb0dbb8bde61b8b0b.html')
+
+def contact_page(request):
+    return render(request,'shop/contactus.html')
+
+def policies_page(request):
+    return render(request,'shop/policies.html')

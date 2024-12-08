@@ -1,0 +1,148 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block title %}Contact Us{% endblock %}
+
+{% block content %}
+<!-- ##### Main Content Wrapper Start ##### -->
+<div class="main-content-wrapper d-flex clearfix">
+
+    <!-- Mobile Nav (max width 767px)-->
+    <div class="mobile-nav">
+        <!-- Navbar Brand -->
+        <div class="amado-navbar-brand">
+            <a href="/"><img src="{% static 'img/core-img/logo.png' %}" alt=""></a>
+        </div>
+        <!-- Navbar Toggler -->
+        <div class="amado-navbar-toggler">
+            <span></span><span></span><span></span>
+        </div>
+    </div>
+
+    <!-- Header Area Start -->
+    <header class="header-area clearfix">
+        <!-- Close Icon -->
+        <div class="nav-close">
+            <i class="fa fa-close" aria-hidden="true"></i>
+        </div>
+        <!-- Logo -->
+        <div class="logo">
+            <a href="/"><img src="{% static 'img/core-img/logo.png' %}" alt=""></a>
+        </div>
+        <!-- Amado Nav -->
+        <nav class="amado-nav">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/shop">Shop</a></li>
+                <li><a href="/cart">Cart</a></li>
+                <li class="active"><a href="/contact">Contact Us</a></li>
+            </ul>
+        </nav>
+        <!-- Button Group -->
+        <div class="amado-btn-group mt-30 mb-100">
+            <a href="#" class="btn amado-btn mb-15">%Discount%</a>
+            <a href="#" class="btn amado-btn active">New this week</a>
+        </div>
+        <!-- Cart Menu -->
+        <div class="cart-fav-search mb-100">
+            <a href="/cart" class="cart-nav"><img src="{% static 'img/core-img/cart.png' %}" alt=""> Cart <span>({{ cart|length }})</span></a>
+            <a href="#" class="fav-nav"><img src="{% static 'img/core-img/favorites.png' %}" alt=""> Favourite</a>
+            <a href="#" class="search-nav"><img src="{% static 'img/core-img/search.png' %}" alt=""> Search</a>
+        </div>
+        <!-- Social Button -->
+        <div class="social-info d-flex justify-content-between">
+            <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+        </div>
+    </header>
+    <!-- Header Area End -->
+
+    <!-- ##### Contact Area Start ##### -->
+    <div class="single-product-area section-padding-100 clearfix">
+        <div class="container">
+            <div class="row">
+                <!-- Policies Link Section -->
+                <div class="col-12">
+                    <h1 class="mb-3">
+                        <a href="/policies" class="text-decoration-none text-primary" style="font-size: 2rem;">
+                            Our Policies
+                        </a>
+                    </h1>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="col-12 col-lg-6">
+                    <div class="contact-info">
+                        <h2>Contact Information</h2>
+                        <p>
+                            If you have any questions or need further assistance, feel free to contact us using the form below or reach us via our contact details.
+                        </p>
+                        <ul class="contact-details">
+                            <li>
+                                <i class="fa fa-map-marker" aria-hidden="true"></i> Good Luck Florist, Lower Parel, Mumbai, India
+                            </li>
+                            <li>
+                                <i class="fa fa-phone" aria-hidden="true"></i> +123 456 789
+                            </li>
+                            <li>
+                                <i class="fa fa-envelope" aria-hidden="true"></i> contact@yourdomain.com
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+
+                <!-- Contact Form -->
+                <div class="col-12 col-lg-6">
+                    <div class="contact-form">
+                        <h2>Send Us a Message</h2>
+                        <form action="#" method="post">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                        <input type="email" name="email" class="form-control" placeholder="Your Email" required>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <textarea name="message" class="form-control" placeholder="Your Message" rows="5" required></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn amado-btn mb-15">Send Message</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Google Map -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="google-map">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3773.287553795499!2d72.8289996!3d18.9986034!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7ce8d3425563d%3A0x221a73958bb7c38e!2sGood+Luck+Florist+Lower+Parel+Mumbai!5e0!3m2!1sen!2sin!4v1712877636533!5m2!1sen!2sin" 
+                            width="600" 
+                            height="450" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Contact Area End ##### -->
+</div>
+<!-- ##### Main Content Wrapper End ##### -->
+{% endblock %}

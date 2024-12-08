@@ -1,0 +1,99 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block title %}Contact Us{% endblock %}
+
+{% block content %}
+<!-- ##### Main Content Wrapper Start ##### -->
+<div class="main-content-wrapper d-flex clearfix">
+
+    <!-- Mobile Nav (max width 767px)-->
+    <div class="mobile-nav">
+        <!-- Navbar Brand -->
+        <div class="amado-navbar-brand">
+            <a href="/"><img src="{% static 'img/core-img/logo.png' %}" alt=""></a>
+        </div>
+        <!-- Navbar Toggler -->
+        <div class="amado-navbar-toggler">
+            <span></span><span></span><span></span>
+        </div>
+    </div>
+
+    <!-- Header Area Start -->
+    <header class="header-area clearfix">
+        <!-- Close Icon -->
+        <div class="nav-close">
+            <i class="fa fa-close" aria-hidden="true"></i>
+        </div>
+        <!-- Logo -->
+        <div class="logo">
+            <a href="/"><img src="{% static 'img/core-img/logo.png' %}" alt=""></a>
+        </div>
+        <!-- Amado Nav -->
+        <nav class="amado-nav">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/shop">Shop</a></li>
+                <li><a href="/cart">Cart</a></li>
+                <li class="active"><a href="/contact">Contact Us</a></li>
+            </ul>
+        </nav>
+        <!-- Button Group -->
+        <div class="amado-btn-group mt-30 mb-100">
+            <a href="#" class="btn amado-btn mb-15">%Discount%</a>
+            <a href="#" class="btn amado-btn active">New this week</a>
+        </div>
+        <!-- Cart Menu -->
+        <div class="cart-fav-search mb-100">
+            <a href="/cart" class="cart-nav"><img src="{% static 'img/core-img/cart.png' %}" alt=""> Cart <span>({{ cart|length }})</span></a>
+            <a href="#" class="fav-nav"><img src="{% static 'img/core-img/favorites.png' %}" alt=""> Favourite</a>
+            <a href="#" class="search-nav"><img src="{% static 'img/core-img/search.png' %}" alt=""> Search</a>
+        </div>
+        <!-- Social Button -->
+        <div class="social-info d-flex justify-content-between">
+            <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+        </div>
+    </header>
+    <!-- Header Area End -->
+
+    <!-- ##### Contact Area Start ##### -->
+    <div class="single-product-area section-padding-100 clearfix">
+        <div class="container">
+
+            <!-- Policies and Terms Section -->
+            <div class="row">
+                <div class="col-12">
+                    <h3>Website Policies</h3>
+                    <p>To comply with Razorpay's requirements and for the smooth functioning of payments, please note the following essential policies for your website:</p>
+
+                    <h4>1. Terms and Conditions</h4>
+                    <p>Our Terms and Conditions outline the rules for using the website and purchasing products. By accessing our services, you agree to abide by these terms. This includes limitations of liability, cancellation rights, and usage policies for our products and services.</p>
+
+                    <h4>2. Privacy Policy</h4>
+                    <p>We take privacy seriously and ensure that all personal data collected from users is protected in accordance with relevant data protection laws. This policy explains how we collect, store, and use your data for providing our services. We do not share personal data with third parties unless required for business operations or legal purposes.</p>
+
+                    <h4>3. Refund and Cancellation Policy</h4>
+                    <p>If you wish to cancel or request a refund for a purchase, you must do so within 7 days of the order date. Refunds are processed within 5-7 business days. Refunds will be credited back to your original payment method. Certain products may not be eligible for a refund based on the nature of the product or service.</p>
+
+                    <h4>4. Pricing in INR</h4>
+                    <p>All prices for products and services listed on our website are in Indian Rupees (INR). Taxes and shipping fees may apply and will be clearly mentioned during checkout.</p>
+
+                    <h4>5. Shipping Policy</h4>
+                    <p>We aim to deliver products within 5-7 working days. However, the timeline may vary depending on the shipping location. Shipping costs are calculated at checkout based on the delivery address and the weight of the items in your cart. We offer free shipping for orders above a certain value within India.</p>
+
+                    <h4>6. Contact Us</h4>
+                    <p>For any inquiries, you can reach us via our customer support email at contact@yourdomain.com or call us at +123 456 789. Our physical address is 1234 Street, City, Country. Please include your order number when contacting us for faster service.</p>
+
+                    <h4>7. Products and Services</h4>
+                    <p>We offer a variety of products and services, including but not limited to flowers, gift items, and home decor. All products come with a detailed description, including price, specifications, and delivery information. For any issues related to product quality, please contact us immediately.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- ##### Contact Area End ##### -->
+</div>
+<!-- ##### Main Content Wrapper End ##### -->
+{% endblock %}
