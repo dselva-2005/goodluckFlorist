@@ -86,9 +86,17 @@ WSGI_APPLICATION = 'myshop.wsgi.application'
 # Database
 # Using SQLite3 for production
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # }
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'goodluckdb',      # Replace with your database name
+        'USER': 'dselva',      # Replace with your PostgreSQL username
+        'PASSWORD': 'dselva@2005',  # Replace with your PostgreSQL password
+        'HOST': 'localhost',          # Use 'localhost' for local connections or the server IP for remote
+        'PORT': '5432',               # Default PostgreSQL port
     }
 }
 
