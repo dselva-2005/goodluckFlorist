@@ -2,6 +2,7 @@ from django.shortcuts import render,get_object_or_404
 from .models import Product,Category
 from cart.forms import CartAddProductForm
 from django.contrib.postgres.search import SearchRank,SearchVector,SearchQuery
+from .forms import ReviewForm
 # Create your views here.
 
 def product_list(request,category_slug=None):
@@ -24,9 +25,11 @@ def product_detail(request, id, slug):
  product = get_object_or_404(Product,
  id=id,
  slug=slug)
+ form = ReviewForm()
  return render(request,
  'shop/product/detail.html',
- {'product': product})
+ {'product': product,
+  'form':form})
 
 
 def home(request):
