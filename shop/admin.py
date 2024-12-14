@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Product, ProductImage, SiteReviewModel
+from .models import Category, Product, ProductImage, SiteReviewModel, ProductReview
 # Register your models here.
 
 
@@ -28,7 +28,14 @@ class ProductImageAdmin(admin.ModelAdmin):
     list_editable = ['image']
     list_filter = ['product']
 
+
 @admin.register(SiteReviewModel)
 class SiteReviewModelAdmin(admin.ModelAdmin):
-    list_display = ['body','rating','created',]
+    list_display = ['rating','created',]
     list_filter = ['created']
+
+
+@admin.register(ProductReview)
+class ProductReviewAdmin(admin.ModelAdmin):
+    list_display = ['product','rating','created',]
+    list_filter = ['product','created']
