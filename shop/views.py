@@ -1,8 +1,10 @@
-from django.shortcuts import render,get_object_or_404
-from .models import Product,Category
+from django.shortcuts import render,get_object_or_404,redirect
+from .models import Product,Category,SiteReviewModel
 from cart.forms import CartAddProductForm
 from django.contrib.postgres.search import SearchRank,SearchVector,SearchQuery
-from .forms import ReviewForm
+from .forms import ReviewForm,SiteReviewForm
+from django.views.decorators.http import require_POST
+from django.contrib import messages
 # Create your views here.
 
 def product_list(request,category_slug=None):
@@ -22,14 +24,15 @@ def product_list(request,category_slug=None):
                             'cart_product_form': cart_product_form})
 
 def product_detail(request, id, slug):
- product = get_object_or_404(Product,
- id=id,
- slug=slug)
- form = ReviewForm()
- return render(request,
- 'shop/product/detail.html',
- {'product': product,
-  'form':form})
+    product = get_object_or_404(Product,
+    id=id,
+    slug=slug)
+    form = ReviewForm({"product":product,
+                       "rating":(5,'Excellent'),})
+    return render(request,
+    'shop/product/detail.html',
+    {'product': product,
+    'form':form})
 
 
 def home(request):
@@ -70,3 +73,31 @@ def post_search(request):
         'results': results,
     })
 
+@require_POST
+def review_form(request):
+    form = ReviewForm(request.POST)
+    referring_url = request.META.get('HTTP_REFERER', '/')
+    if form.is_valid():
+        form.save()
+        messages.success(request,"review submitted")
+    else:
+        messages.error(request,'review not valid')
+    return redirect(referring_url)
+
+def feedback(request):
+
+    reviews = SiteReviewModel.objects.all()
+    if request.method == "POST":
+        form = SiteReviewForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Feedback submitted')
+            return redirect(request.META.get('HTTP_REFERER', '/'))
+
+        else:
+            messages.error(request,'Failed to submit the Feedback')
+            return render(request,'shop/feedback.html',{'form':form,
+                                                'reviews':reviews})
+    form = SiteReviewForm()
+    return render(request,'shop/feedback.html',{'form':form,
+                                                'reviews':reviews})

@@ -73,3 +73,23 @@ class ProductReview(models.Model):
         (5,'Excellent'),
     ],default=5,
     validators=[MaxValueValidator(5),MinValueValidator(1)])
+
+    class Meta:
+        ordering = ['-created']
+
+
+class SiteReviewModel(models.Model):
+
+    created = models.DateTimeField(auto_now_add=True)
+    body = models.TextField(null=False)
+    rating = models.IntegerField(choices=[
+        (1,'Terrible'),
+        (2,'poor'),
+        (3,'Average'),
+        (4,'Good'),
+        (5,'Excellent'),
+    ],default=5,
+    validators=[MaxValueValidator(5),MinValueValidator(1)])
+
+    class Meta:
+        ordering = ['-created']

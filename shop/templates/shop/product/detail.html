@@ -1,5 +1,6 @@
 {% extends "shop/base.html" %}
 {% load static %}
+{% load shop_tags %}
 {% block title %}Product detail{% endblock title %}
 {% block content %}
 <!-- ##### Main Content Wrapper Start ##### -->
@@ -33,6 +34,7 @@
                 <li><a href="/">Home</a></li>
                 <li><a href="/shop">Shop</a></li>
                 <li><a href="/cart">Cart</a></li>
+                <li ><a href="/feedback">Feedback</a></li>
                 <li ><a href="/contact">Contact Us</a></li>
         </ul>
         </nav>
@@ -60,7 +62,9 @@
     <!-- Product Details Area Start -->
     <div class="single-product-area section-padding-100 clearfix">
         <div class="container-fluid">
-
+            {% block message %}
+                {{ block.super }}
+            {% endblock message %}
             <div class="row">
                 <div class="col-12">
                     <nav aria-label="breadcrumb">
@@ -157,9 +161,38 @@
                     </div>
                 </div>
             </div>
+                 <!-- Reviews Section -->
+            <div class="row mt-5">
+                <div class="col-12">
+                    <h4>Customer Reviews</h4>
+                    <div class="reviews">
+                        {% if product.reviews %}
+                        {% for review in product.reviews.all %}
+                        <div class="media mb-4">
+                            <img class="mr-2 rounded-circle" src="{% static 'img/core-img/user.jpg' %}" alt="User image" style="width: 60px; height: 60px;">
+                            <div class="media-body">
+                                <span>{{ review.body }}</span>
+                                <div class="ratings-review" style="color: gold;">
+                                    <div class="ratings">
+                                    {% for i in review.rating|rangeOf %}
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <small class="text-muted">Posted on {{ review.created|date:"F j, Y, g:i a" }}</small>
+                            </div>
+                        </div>
+                        {% empty %}
+                        <p>No reviews yet. Be the first to review this product!</p>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <!-- Product Details Area End -->
+
 </div>
 <!-- ##### Main Content Wrapper End ##### -->
 
@@ -173,9 +206,11 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form action="/" method="post">
-        <div class="modal-body">
-                {{ form }}
+        <form id="review_form" action="{% url 'shop:product_review' %}" method="post">
+            <div class="modal-body">
+                {{ form.product }}
+                {{ form.body }}
+                {{ form.rating }}
                 {% csrf_token %}
             </div>
             <div class="modal-footer">

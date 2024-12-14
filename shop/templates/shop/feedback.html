@@ -1,0 +1,123 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block title %}Contact Us{% endblock %}
+{% load shop_tags %}
+{% block content %}
+<!-- ##### Main Content Wrapper Start ##### -->
+<div class="main-content-wrapper d-flex clearfix">
+
+    <!-- Mobile Nav (max width 767px)-->
+    <div class="mobile-nav">
+        <!-- Navbar Brand -->
+        <div class="amado-navbar-brand">
+            <a href="/"><img src="{% static 'img/core-img/logo.png' %}" alt=""></a>
+        </div>
+        <!-- Navbar Toggler -->
+        <div class="amado-navbar-toggler">
+            <span></span><span></span><span></span>
+        </div>
+    </div>
+
+    <!-- Header Area Start -->
+    <header class="header-area clearfix">
+        <!-- Close Icon -->
+        <div class="nav-close">
+            <i class="fa fa-close" aria-hidden="true"></i>
+        </div>
+        <!-- Logo -->
+        <div class="logo">
+            <a href="/"><img src="{% static 'img/core-img/logo.png' %}" alt=""></a>
+        </div>
+        <!-- Amado Nav -->
+        <nav class="amado-nav">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/shop">Shop</a></li>
+                <li><a href="/cart">Cart</a></li>
+                <li class="active" ><a href="/feedback">Feedback</a></li>
+                <li><a href="/contact">Contact Us</a></li>
+            </ul>
+        </nav>
+        <!-- Button Group -->
+        <div class="amado-btn-group mt-30 mb-100">
+            <a href="#" class="btn amado-btn mb-15">%Discount%</a>
+            <a href="#" class="btn amado-btn active">New this week</a>
+        </div>
+        <!-- Cart Menu -->
+        <div class="cart-fav-search mb-100">
+            <a href="/cart" class="cart-nav"><img src="{% static 'img/core-img/cart.png' %}" alt=""> Cart <span>({{ cart|length }})</span></a>
+            <a href="#" class="fav-nav"><img src="{% static 'img/core-img/favorites.png' %}" alt=""> Favourite</a>
+            <a href="#" class="search-nav"><img src="{% static 'img/core-img/search.png' %}" alt=""> Search</a>
+        </div>
+        <!-- Social Button -->
+        <div class="social-info d-flex justify-content-between">
+            <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+            <a href="https://www.instagram.com/goodluck_florist/"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+        </div>
+    </header>
+    <!-- Header Area End -->
+
+    <!-- ##### Contact Area Start ##### -->
+    <div class="single-product-area section-padding-100 clearfix">
+        <div class="container">
+            {% block message %}
+                {{ block.super }}
+            {% endblock message %}
+            <!-- Policies and Terms Section -->
+             <div class="row mx-3 mt-4">
+                <div class="container">
+                    <p>We Value Your Feedback
+                        At Good Luck Florist, we’re passionate about providing beautiful flowers and exceptional service. Your feedback is incredibly important to us and helps us improve our offerings to serve you better. Whether you’ve recently made a purchase, received an order, or just have thoughts to share, we would love to hear from you!</p>
+                </div>
+                <div class="col-12" style="display: flex;justify-content: center;">
+                    <div class="contact-form">
+                        <form action="{% url 'shop:feedback' %}" method="post">
+                            {% csrf_token %}
+                                <p class="mb-1 mt-3">Feedback :</p>
+                                {{ form.body }}
+                                <p class="mb-1 mt-3">Experience :</p>
+                                {{ form.rating }}
+                                <button class="btn btn-primary mx-3">submit</button>
+                        </form>
+                    </div>
+                </div>
+                
+             </div>
+
+                  <!-- Reviews Section -->
+            <div class="row mt-5">
+                <div class="col-12">
+                    <h4>Customer Reviews</h4>
+                    <div class="reviews">
+                        {% if reviews %}
+                        {% for review in reviews.all %}
+                        <div class="media mb-4">
+                            <img class="mr-2 rounded-circle" src="{% static 'img/core-img/user.jpg' %}" alt="User image" style="width: 60px; height: 60px;">
+                            <div class="media-body">
+                                <span>{{ review.body }}</span>
+                                <div class="ratings-review" style="color: gold;">
+                                    <div class="ratings">
+                                    {% for i in review.rating|rangeOf %}
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <small class="text-muted">Posted on {{ review.created|date:"F j, Y, g:i a" }}</small>
+                            </div>
+                        </div>
+                        {% empty %}
+                        <p>No reviews yet. Be the first to review this product!</p>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- ##### Contact Area End ##### -->
+</div>
+<!-- ##### Main Content Wrapper End ##### -->
+{% endblock %}
