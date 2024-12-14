@@ -107,9 +107,8 @@
                                 <small class="text-muted">Posted on {{ review.created|date:"F j, Y, g:i a" }}</small>
                             </div>
                         </div>
-                        {% empty %}
-                        <p>No reviews yet. Be the first to review this product!</p>
                         {% endfor %}
+                        {% else %}<p>No reviews yet. Be the first to review this product!</p>
                         {% endif %}
                     </div>
                 </div>
