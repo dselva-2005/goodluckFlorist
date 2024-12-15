@@ -167,7 +167,7 @@
                     <h4>Customer Reviews</h4>
                     <div class="reviews">
                         {% if product.reviews %}
-                        {% for review in product.reviews.all %}
+                        {% for review in product|fiveProductReview %}
                         <div class="media mb-4">
                             <img class="mr-2 rounded-circle" src="{% static 'img/core-img/user.jpg' %}" alt="User image" style="width: 60px; height: 60px;">
                             <div class="media-body">

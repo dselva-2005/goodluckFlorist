@@ -5,22 +5,30 @@ from django.contrib.postgres.search import SearchRank,SearchVector,SearchQuery
 from .forms import ReviewForm,SiteReviewForm
 from django.views.decorators.http import require_POST
 from django.contrib import messages
+from django.core.paginator import Paginator
 # Create your views here.
 
 def product_list(request,category_slug=None):
+    page_number = request.GET.get('page', 1)
     category = None
-    categories = Category.objects.all()
-    products = Product.objects.filter(available=True)
-    cart_product_form = CartAddProductForm()
     if category_slug:
         category = get_object_or_404(Category,slug=category_slug)
         products = Product.objects.filter(category=category)
+    else:
+        products = Product.objects.filter(available=True)
+    
+    total_product_count = Product.objects.all().count()
+    paginator = Paginator(products,4)
+    categories = Category.objects.all()
+    cart_product_form = CartAddProductForm()
+    products = paginator.get_page(page_number)
 
     return render(request,'shop/product/list.html',
                             {'category': category,
                             'categories': categories,
                             'products': products,
-                            'total_product_count': len(products),
+                            'total_product_count': total_product_count,
+                            'page_product_count': len(products),
                             'cart_product_form': cart_product_form})
 
 def product_detail(request, id, slug):
@@ -37,7 +45,7 @@ def product_detail(request, id, slug):
 
 def home(request):
    try:
-        products = Product.objects.all()[5]
+        products = Product.objects.all()[:6]
    except IndexError:
         products = Product.objects.all()
 
@@ -86,7 +94,11 @@ def review_form(request):
 
 def feedback(request):
 
-    reviews = SiteReviewModel.objects.all()
+    reviews_count = SiteReviewModel.objects.all().count()
+    if reviews_count>5:
+        reviews = SiteReviewModel.objects.all()[:5]
+    else:
+        reviews = SiteReviewModel.objects.all()
     if request.method == "POST":
         form = SiteReviewForm(request.POST)
         if form.is_valid():

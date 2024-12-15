@@ -157,18 +157,17 @@
                     <div class="product-topbar d-xl-flex align-items-end justify-content-between">
                         <!-- Total Products -->
                         <div class="total-products">
-                            <p>Showing 1-8 0f {{ total_product_count }}</p>
+                            <p>Showing&nbsp;&nbsp; {{ page_product_count }} 0f {{ total_product_count }}</p>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="row">
-
                 <!-- Single Product Area -->
                 {% for product in products %}
                     <div class="col-12 col-sm-6 col-md-12 col-xl-6">
-                        <div class="single-product-wrapper">
+                        <div class="single-product-wrapper mb-1">
                             <!-- Product Image -->
                             <div class="product-img">
                                 <img src="{{ product.image.url }}"  alt="">
@@ -203,23 +202,18 @@
                         </div>
                     </div>
                 {% endfor %}
-
-
             </div>
-
-            <div class="row">
-                <div class="col-12">
-                    <!-- Pagination -->
-                    <nav aria-label="navigation">
-                        <ul class="pagination justify-content-end mt-50">
-                            <li class="page-item active"><a class="page-link" href="#">01.</a></li>
-                            <li class="page-item"><a class="page-link" href="#">02.</a></li>
-                            <li class="page-item"><a class="page-link" href="#">03.</a></li>
-                            <li class="page-item"><a class="page-link" href="#">04.</a></li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
+            <nav aria-label="navigation">
+                <ul class="pagination justify-content-end mt-50">
+                    {% for num in products.paginator.page_range %}
+                        {% if products.number == num %}
+                            <li class="page-item active"><a class="page-link" href="?page={{ num }}">0{{ num }}.</a></li>
+                        {% else %}
+                            <li class="page-item"><a class="page-link" href="?page={{ num }}">0{{ num }}.</a></li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </nav>
         </div>
     </div>
 </div>
