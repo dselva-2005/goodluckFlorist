@@ -26,7 +26,7 @@ from orders.views import paymenthandler
 
 urlpatterns = [
     path('paymenthandler/', paymenthandler, name='paymenthandler'),
-    path('d465091e-8335-412e-892f-9c6858d92462/', admin.site.urls),
+    path('0cd7a23f-55ba-4901-a665-e667a74e05ee/', admin.site.urls),
     path('cart/', include('cart.urls', namespace='cart')),
     path('orders/', include('orders.urls', namespace='orders')),
     path('', include('shop.urls', namespace='shop')),
