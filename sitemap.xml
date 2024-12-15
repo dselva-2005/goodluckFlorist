@@ -9,38 +9,63 @@
 
 <url>
   <loc>https://goodluckflorist.in/</loc>
-  <lastmod>2024-12-08T10:26:55+00:00</lastmod>
+  <lastmod>2024-12-15T05:46:01+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
   <loc>https://goodluckflorist.in/shop/</loc>
-  <lastmod>2024-12-08T10:26:55+00:00</lastmod>
+  <lastmod>2024-12-15T05:46:01+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://goodluckflorist.in/cart/</loc>
-  <lastmod>2024-12-08T10:26:55+00:00</lastmod>
+  <lastmod>2024-12-15T05:46:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://goodluckflorist.in/feedback/</loc>
+  <lastmod>2024-12-15T05:46:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://goodluckflorist.in/contact/</loc>
+  <lastmod>2024-12-15T05:46:01+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://goodluckflorist.in/bouquets/</loc>
-  <lastmod>2024-12-08T10:26:55+00:00</lastmod>
+  <lastmod>2024-12-15T05:46:01+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://goodluckflorist.in/2/majestic-bloom/</loc>
-  <lastmod>2024-12-08T10:26:55+00:00</lastmod>
+  <lastmod>2024-12-15T05:46:01+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://goodluckflorist.in/1/opulent-bouquet/</loc>
-  <lastmod>2024-12-08T10:26:55+00:00</lastmod>
+  <lastmod>2024-12-15T05:46:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://goodluckflorist.in/shop/?page=1</loc>
+  <lastmod>2024-12-15T05:46:01+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://goodluckflorist.in/orders/create/</loc>
-  <lastmod>2024-12-08T10:26:55+00:00</lastmod>
+  <lastmod>2024-12-15T05:46:01+00:00</lastmod>
   <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://goodluckflorist.in/policies/</loc>
+  <lastmod>2024-12-15T05:46:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://goodluckflorist.in/bouquets/?page=1</loc>
+  <lastmod>2024-12-15T05:46:01+00:00</lastmod>
+  <priority>0.51</priority>
 </url>
 
 
