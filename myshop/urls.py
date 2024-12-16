@@ -25,6 +25,7 @@ from django.conf.urls.static import static
 from orders.views import paymenthandler
 
 urlpatterns = [
+    path('accounts/', include('django.contrib.auth.urls'), name='authentication'),
     path('paymenthandler/', paymenthandler, name='paymenthandler'),
     path('0cd7a23f-55ba-4901-a665-e667a74e05ee/', admin.site.urls),
     path('cart/', include('cart.urls', namespace='cart')),

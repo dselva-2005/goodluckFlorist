@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'cart.apps.CartConfig',
     'orders.apps.OrdersConfig',
     'payment.apps.PaymentConfig',
+    'accounts.apps.AccountsConfig',
     
     # thirdparty apps
 ]
@@ -189,3 +190,5 @@ RAZOR_KEY_SECRET = '9ldqP8NZjzGuEhrXuL6CQKDA'
 CSRF_TRUSTED_ORIGINS = [
     'https://goodluckflorist.in',
 ]
+LOGIN_URL = '/accounts/login/'
+LOGOUT_REDIRECT_URL = '/'
