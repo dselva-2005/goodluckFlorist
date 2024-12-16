@@ -35,6 +35,8 @@ ALLOWED_HOSTS = ['www.goodluckflorist.in', 'goodluckflorist.in']
 
 # Application definition
 INSTALLED_APPS = [
+    # first prefrence
+    'accounts.apps.AccountsConfig',
     # default apps
     'django.contrib.admin',
     'django.contrib.auth',
@@ -48,7 +50,6 @@ INSTALLED_APPS = [
     'cart.apps.CartConfig',
     'orders.apps.OrdersConfig',
     'payment.apps.PaymentConfig',
-    'accounts.apps.AccountsConfig',
     
     # thirdparty apps
 ]
