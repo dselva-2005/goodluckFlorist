@@ -51,10 +51,10 @@
             ><img src="{% static 'img/core-img/cart.png' %}" alt="" /> Cart
             <span>({{ cart|length }})</span></a
           >
-          <a href="#" class="fav-nav"
+          {% comment %} <a href="#" class="fav-nav"
             ><img src="{% static 'img/core-img/favorites.png' %}" alt="" />
             Favourite</a
-          >
+          > {% endcomment %}
           <a href="#" class="search-nav"
             ><img src="{% static 'img/core-img/search.png' %}" alt="" />
             Search</a
