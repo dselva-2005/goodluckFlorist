@@ -154,8 +154,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Session settings for cart
 CART_SESSION_ID = 'cart'
 
-# Logging email message to your console
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# # Logging email message to your console
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # # Email backend for production (optional, update credentials)
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
