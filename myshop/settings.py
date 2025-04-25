@@ -185,8 +185,8 @@ LOGGING = {
     },
 }
 
-RAZOR_KEY_ID = 'rzp_test_6DO6fVM468pejE'
-RAZOR_KEY_SECRET = '9ldqP8NZjzGuEhrXuL6CQKDA'
+RAZOR_KEY_ID = 'rzp_live_SEgeRm99FuCaxU'
+RAZOR_KEY_SECRET = 'iYP24GtkE803LHvmSaX3i6Yz'
 
 CSRF_TRUSTED_ORIGINS = [
     'https://goodluckflorist.in',
