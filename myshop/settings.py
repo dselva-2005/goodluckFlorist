@@ -10,10 +10,14 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
+import os
 from pathlib import Path
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+load_dotenv()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -185,8 +189,9 @@ LOGGING = {
     },
 }
 
-RAZOR_KEY_ID = 'rzp_live_SEgeRm99FuCaxU'
-RAZOR_KEY_SECRET = 'iYP24GtkE803LHvmSaX3i6Yz'
+
+RAZORPAY_API_KEY = os.getenv('RAZORPAY_API_KEY')
+RAZORPAY_SECRET_KEY = os.getenv('RAZORPAY_SECRET_KEY')
 
 CSRF_TRUSTED_ORIGINS = [
     'https://goodluckflorist.in',
