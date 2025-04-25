@@ -26,16 +26,16 @@ load_dotenv()
 SECRET_KEY = 'django-insecure-s97*kwc56x(_+a2qc&oyhf=y278$9n%921v6#i9vy-@-5iid_7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+# DEBUG = False
 
 # # Update this with your VM's external IP or domain name
-ALLOWED_HOSTS = ['www.goodluckflorist.in', 'goodluckflorist.in','127.0.0.1']
+# ALLOWED_HOSTS = ['www.goodluckflorist.in', 'goodluckflorist.in','127.0.0.1']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
+DEBUG = True
 
 # Update this with your VM's external IP or domain name
-# ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 INSTALLED_APPS = [
@@ -92,18 +92,18 @@ WSGI_APPLICATION = 'myshop.wsgi.application'
 # Database
 # Using SQLite3 for production
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': BASE_DIR / 'db.sqlite3',
-    # }
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'goodluckdb',      # Replace with your database name
-        'USER': 'dselva',      # Replace with your PostgreSQL username
-        'PASSWORD': 'dselva@2005',  # Replace with your PostgreSQL password
-        'HOST': 'localhost',          # Use 'localhost' for local connections or the server IP for remote
-        'PORT': '5432',               # Default PostgreSQL port
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'goodluckdb',      # Replace with your database name
+    #     'USER': 'dselva',      # Replace with your PostgreSQL username
+    #     'PASSWORD': 'dselva@2005',  # Replace with your PostgreSQL password
+    #     'HOST': 'localhost',          # Use 'localhost' for local connections or the server IP for remote
+    #     'PORT': '5432',               # Default PostgreSQL port
+    # }
 }
 
 # Password validation
@@ -189,9 +189,8 @@ LOGGING = {
     },
 }
 
-
-RAZORPAY_API_KEY = os.getenv('RAZORPAY_API_KEY')
-RAZORPAY_SECRET_KEY = os.getenv('RAZORPAY_SECRET_KEY')
+RAZOR_KEY_ID = 'rzp_live_SEgeRm99FuCaxU'
+RAZOR_KEY_SECRET = 'iYP24GtkE803LHvmSaX3i6Yz'
 
 CSRF_TRUSTED_ORIGINS = [
     'https://goodluckflorist.in',
