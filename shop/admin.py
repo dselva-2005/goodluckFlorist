@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Product, ProductImage, SiteReviewModel, ProductReview
+from .models import Category, Product, ProductImage, SiteReviewModel, ProductReview, CoreCategory
 # Register your models here.
 
 
@@ -8,6 +8,10 @@ class ProductImageInline(admin.TabularInline):
     extra = 1  # Number of empty image fields to display by default
     fields = ['image','name']
 
+
+@admin.register(CoreCategory)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ['name']
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):

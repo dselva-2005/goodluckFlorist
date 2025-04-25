@@ -2,8 +2,16 @@ from django.db import models
 from django.urls import reverse
 from django.core.validators import MaxValueValidator,MinValueValidator
 
+
 # Create your models here.
+class CoreCategory(models.Model):
+    name = models.CharField(max_length=200)
+
+    class Meta:
+        verbose_name_plural = 'Core categories'
+
 class Category(models.Model):
+    core_category = models.ForeignKey(CoreCategory,on_delete=models.CASCADE, related_name='subcategories')
     name = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200,unique=True)
 
