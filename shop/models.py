@@ -9,6 +9,10 @@ class CoreCategory(models.Model):
 
     class Meta:
         verbose_name_plural = 'Core categories'
+    
+    def __str__(self):
+        return self.name
+
 
 class Category(models.Model):
     core_category = models.ForeignKey(CoreCategory,on_delete=models.CASCADE, related_name='subcategories')

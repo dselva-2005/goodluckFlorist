@@ -3,7 +3,65 @@
 {% load static %}
 {% block title %}Checkout{% endblock title %}
 {% block content %}
+<style>
+/* Remove border from the entire card */
+.categories-menu .card {
+    border: none; /* Remove card borders */
+    box-shadow: none; /* Optional: removes shadow around the card */
+}
 
+/* Styling for the accordion header */
+.categories-menu .card-header {
+    border: none; /* Remove border from header */
+}
+
+/* Title button should not have link decoration */
+.categories-menu .btn-link {
+    color: #fbb710;  /* Primary color for categories */
+    font-size: 1rem;
+    font-weight: bold;
+    text-decoration: none; /* Remove link underline */
+    padding: 0; /* Remove extra padding */
+    background: none; /* Ensure no background */
+    border: none; /* No border */
+}
+
+/* On hover, keep no text decoration */
+.categories-menu .btn-link:hover {
+    color: #fbb710;
+    text-decoration: none; /* No underline on hover */
+}
+
+/* Subcategories section */
+.categories-menu .card-body {
+    background-color: #f5f7fa; /* Match the header background */
+    border-top: none; /* Remove the border at the top */
+}
+
+/* Remove any border for the expanded content */
+.categories-menu .collapse {
+    border: none; /* Ensure the collapse section has no border */
+}
+
+/* Styling for subcategory links */
+.categories-menu .card-body a {
+    display: block;
+    color: #333;
+    padding: 8px 15px;
+    text-decoration: none; /* Remove underline from subcategory links */
+}
+
+.categories-menu .card-body a:hover {
+    color: #fbb710;
+    text-decoration: none; /* Keep no underline on hover */
+}
+
+/* Remove the bottom border of the collapse section */
+.categories-menu .card-body .collapse.show {
+    background-color: #f5f7fa; /* Ensure expanded section matches the header */
+}
+
+</style>
 <!-- ##### Main Content Wrapper Start ##### -->
 <div class="main-content-wrapper d-flex clearfix">
 
@@ -66,16 +124,38 @@
         <div class="widget catagory mb-50">
             <!-- Widget Title -->
             <h6 class="widget-title mb-30">Catagories</h6>
-
-            <!--  Catagories  -->
-            <div class="catagories-menu">
-                <ul>
-                    {% for cat in categories %}
-                    <li {% if cat == category %}class="active"{% endif %}><a href="{{ cat.get_absolute_url }}">{{cat}}</a></li>
-                    {% endfor %}
-                    
-                </ul>
+<!-- Categories Accordion -->
+<div class="categories-menu">
+    <div class="accordion" id="categoryAccordion">
+        {% for core_category in core_categories %}
+        <div class="card">
+            <div class="card-header" id="heading{{ core_category.id }}">
+                <h5 class="mb-0">
+                    <!-- Core Category as Accordion Header -->
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse{{ core_category.id }}" aria-expanded="true" aria-controls="collapse{{ core_category.id }}">
+                     <!-- Icon for main category -->
+                        {{ core_category.name }}
+                    </button>
+                </h5>
             </div>
+
+            <!-- Subcategories Dropdown (Collapsible Content) -->
+            <div id="collapse{{ core_category.id }}" class="collapse" aria-labelledby="heading{{ core_category.id }}">
+                <div class="card-body">
+                    <ul class="list-unstyled">
+                        {% for subcategory in core_category.subcategories.all %}
+                            <li><a href="{{ subcategory.get_absolute_url }}">{{ subcategory.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
         </div>
 
         <!-- ##### Single Widget ##### -->

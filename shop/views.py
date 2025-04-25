@@ -1,5 +1,5 @@
 from django.shortcuts import render,get_object_or_404,redirect
-from .models import Product,Category,SiteReviewModel
+from .models import Product,Category,SiteReviewModel,CoreCategory
 from cart.forms import CartAddProductForm
 from django.contrib.postgres.search import SearchRank,SearchVector,SearchQuery
 from .forms import ReviewForm,SiteReviewForm
@@ -20,12 +20,14 @@ def product_list(request,category_slug=None):
     total_product_count = Product.objects.all().count()
     paginator = Paginator(products,4)
     categories = Category.objects.all()
+    core_categories = CoreCategory.objects.all()
     cart_product_form = CartAddProductForm()
     products = paginator.get_page(page_number)
 
     return render(request,'shop/product/list.html',
                             {'category': category,
                             'categories': categories,
+                            'core_categories': core_categories,
                             'products': products,
                             'total_product_count': total_product_count,
                             'page_product_count': len(products),
