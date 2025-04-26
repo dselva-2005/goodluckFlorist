@@ -38,3 +38,5 @@ Thumbs.db
 # Local settings (you can also set your settings.py to be ignored if you don't want to share secrets)
 local_settings.py
 settings_local.py
+
+.env
