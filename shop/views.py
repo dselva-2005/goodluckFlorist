@@ -1,11 +1,14 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from .models import Product,Category,SiteReviewModel,CoreCategory
-from cart.forms import CartAddProductForm
+from cart.forms import CartAddProductForm, MessageForm
 from django.contrib.postgres.search import SearchRank,SearchVector,SearchQuery
 from .forms import ReviewForm,SiteReviewForm
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.core.paginator import Paginator
+from django.core.mail import send_mail
+from .tasks import sendmessage
+
 # Create your views here.
 
 def product_list(request,category_slug=None):
@@ -57,7 +60,23 @@ def verify(request):
     return render(request,'shop/googleb0dbb8bde61b8b0b.html')
 
 def contact_page(request):
-    return render(request,'shop/contactus.html')
+    message_form = MessageForm()
+    if request.method == 'POST':
+        message_form = MessageForm(request.POST)
+        if message_form.is_valid():
+            # Extract data from form
+            cd = message_form.cleaned_data
+            email = cd['email']
+            subject = f"Message from {cd['name']} at Goodluck Florist"
+            message_body = f"Name: {cd['name']}\nEmail: {cd['email']}\n\nMessage:\n{cd['message']}"
+            
+            sendmessage.delay(subject,message_body,email)
+            
+            messages.success(request, "Your message has been sent successfully!")
+        else:
+            messages.error(request, "There was an error with your form. Please correct it and try again.")
+
+    return render(request, 'shop/contactus.html', {"form": message_form})
 
 def policies_page(request):
     return render(request,'shop/policies.html')

@@ -165,8 +165,8 @@ CART_SESSION_ID = 'cart'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'smartcard.xie@gmail.com'
-EMAIL_HOST_PASSWORD = 'tyey mqzr jgdo llyt'
+EMAIL_HOST_USER = 'goodluckflorist@gmail.com'
+EMAIL_HOST_PASSWORD = 'knse gnqq etnj klkw'
 EMAIL_USE_TLS = True
 
 # Logging configuration (optional but recommended)
@@ -198,3 +198,5 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 LOGIN_URL = '/accounts/login/'
 LOGOUT_REDIRECT_URL = '/'
+
+ADMIN_EMAIL = 'goodluckflorist@gmail.com'

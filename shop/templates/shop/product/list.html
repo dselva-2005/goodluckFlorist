@@ -109,12 +109,12 @@
             <a href="#" class="search-nav"><img src="{% static 'img/core-img/search.png' %}"  alt=""> Search</a>
         </div>
         <!-- Social Button -->
-        <div class="social-info d-flex justify-content-between">
+        {% comment %} <div class="social-info d-flex justify-content-between">
             <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
             <a href="https://www.instagram.com/goodluck_florist/"><i class="fa fa-instagram" aria-hidden="true"></i></a>
             <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
             <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-        </div>
+        </div> {% endcomment %}
     </header>
     <!-- Header Area End -->
 
@@ -123,7 +123,7 @@
         <!-- ##### Single Widget ##### -->
         <div class="widget catagory mb-50">
             <!-- Widget Title -->
-            <h6 class="widget-title mb-30">Catagories</h6>
+            <h6 class="widget-title mb-30">Categories</h6>
 <!-- Categories Accordion -->
 <div class="categories-menu">
     <div class="accordion" id="categoryAccordion">
@@ -248,18 +248,20 @@
                 {% for product in products %}
                     <div class="col-12 col-sm-6 col-md-12 col-xl-6">
                         <div class="single-product-wrapper mb-1">
-                            <!-- Product Image -->
-                            <div class="product-img">
-                                <img src="{{ product.image.url }}"  alt="">
-                                <!-- Hover Thumb -->
-                                <img class="hover-img" src="{% getSingleImg product.id %}"  alt="">
-                            </div>
-
+                            
+                            <a href="{{ product.get_absolute_url }}">
+                                <!-- Product Image -->
+                                <div class="product-img cursor-pointer">
+                                    <img src="{{ product.image.url }}"  alt="">
+                                    <!-- Hover Thumb -->
+                                    <img class="hover-img" src="{% getSingleImg product.id %}"  alt="">
+                                </div>
+                            </a>
                             <!-- Product Description -->
                             <div class="product-description d-flex align-items-center justify-content-between">
                                 <!-- Product Meta Data -->
                                 <div class="product-meta-data">
-                                    <div class="line"></div>
+                                    <!-- <div class="line"></div> -->
                                     <p class="product-price">₹{{ product.price }}</p>
                                     <a href="{{ product.get_absolute_url }}">
                                         <h6>{{ product.name }}</h6>

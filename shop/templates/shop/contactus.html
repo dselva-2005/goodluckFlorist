@@ -62,6 +62,9 @@
     <!-- ##### Contact Area Start ##### -->
     <div class="single-product-area section-padding-100 clearfix">
         <div class="container">
+            {% block message %}
+                {{ block.super }}
+            {% endblock message %}
             <div class="row">
                 <!-- Policies Link Section -->
                 <div class="col-12">
@@ -94,35 +97,42 @@
                 </div>
 
 
-                <!-- Contact Form -->
-                <div class="col-12 col-lg-6">
-                    <div class="contact-form">
-                        <h2>Send Us a Message</h2>
-                        <form action="#" method="post">
-                            {% csrf_token %}
-                            <div class="row">
-                                <div class="col-12 col-md-6">
-                                    <div class="form-group">
-                                        <input type="text" name="name" class="form-control" placeholder="Your Name" required>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6">
-                                    <div class="form-group">
-                                        <input type="email" name="email" class="form-control" placeholder="Your Email" required>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <textarea name="message" class="form-control" placeholder="Your Message" rows="5" required></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <button type="submit" class="btn amado-btn mb-15">Send Message</button>
+            <!-- Contact Form Section -->
+            <div class="col-12 col-lg-6">
+                <div class="contact-form">
+                    <h2>Send Us a Message</h2>
+                    <form action="{% url 'shop:contact_page' %}" method="post" novalidate>
+                        {% csrf_token %}
+                        <div class="row">
+                            <!-- Name Field -->
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    {{ form.name }}
                                 </div>
                             </div>
-                        </form>
-                    </div>
+
+                            <!-- Email Field -->
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    {{ form.email }}
+                                </div>
+                            </div>
+
+                            <!-- Message Field -->
+                            <div class="col-12">
+                                <div class="form-group">
+                                    {{ form.message }}
+                                </div>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div class="col-12">
+                                <button type="submit" class="btn amado-btn mb-15">Send Message</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
+            </div>
 
             </div>
 
