@@ -1,5 +1,7 @@
 from django.db import models
 from shop.models import Product
+from functools import reduce
+from django.conf import settings
 
 # Create your models here.
 class Order(models.Model):
@@ -24,7 +26,16 @@ class Order(models.Model):
         return f'order {self.id}'
     
     def get_total(self):
-        return sum(items.get_cost() for items in self.items.all() )
+        product_cost = sum(items.get_cost() for items in self.items.all() ) 
+        delivery_charge = self.get_delivery_charge()
+        total = product_cost + delivery_charge
+        return total 
+    
+    def get_delivery_charge(self):
+        charge = 0 
+        total_quantity = reduce(lambda x,y: x + y.quantity,self.items.all(),0)
+        charge = total_quantity * settings.DELIVERY_CHARGE_PER_ITEM
+        return int(charge)
 
     def get_order_url(self):
         return f'https://dashboard.razorpay.com/app/payments/{self.online_order_id}'
