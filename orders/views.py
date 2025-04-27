@@ -2,7 +2,7 @@ from django.shortcuts import render,get_object_or_404
 from .models import OrderItem,Order,OrderDetails
 from .forms import OrderCreateForm
 from cart.cart import Cart
-from .tasks import order_created,payment_completed
+from .tasks import payment_completed
 from django.contrib import messages
 import razorpay
 from django.conf import settings
@@ -72,7 +72,6 @@ def order_create(request):
                 return render(request, 'orders/order/payment.html', context=context)
 
             else:
-                order_created.delay(order.id)
                 payment_completed.delay(order.id)
                 messages.success(request,'Your order is placed successfully')
                 return render(request,
@@ -122,7 +121,6 @@ def paymenthandler(request):
                 order.paid = True
                 order.online_order_id = payment_id
                 order.save()
-                order_created.delay(order.id)
                 payment_completed.delay(order_id)
                 try:
                     # capture the payemt
