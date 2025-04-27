@@ -200,3 +200,5 @@ LOGIN_URL = '/accounts/login/'
 LOGOUT_REDIRECT_URL = '/'
 
 ADMIN_EMAIL = 'goodluckflorist@gmail.com'
+USE_TZ = True
+DELIVERY_CHARGE_PER_ITEM = 75

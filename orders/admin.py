@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Order,OrderItem
+from .models import Order,OrderItem,OrderDetails
 from django.http import HttpResponse
 import csv
 import datetime
@@ -50,3 +50,7 @@ class OrderAdmin(admin.ModelAdmin):
     list_filter = ['paid','created','updated']
     inlines = [OrderIterInline]
     actions = [export_to_csv]
+
+@admin.register(OrderDetails)
+class OrderDetailsAdmin(admin.ModelAdmin):
+        list_display = ['order','requested_delivery_date']

@@ -47,7 +47,7 @@
         <div class="cart-fav-search mb-100">
             <a href="/cart" class="cart-nav"><img src="{% static 'img/core-img/cart.png' %}" alt=""> Cart
                 <span>({{ cart|length }})</span></a>
-            <a href="#" class="fav-nav"><img src="{% static 'img/core-img/favorites.png' %}" alt=""> Favourite</a>
+            {% comment %} <a href="#" class="fav-nav"><img src="{% static 'img/core-img/favorites.png' %}" alt=""> Favourite</a> {% endcomment %}
             <a href="#" class="search-nav"><img src="{% static 'img/core-img/search.png' %}" alt=""> Search</a>
         </div>
         <!-- Social Button -->
@@ -86,6 +86,14 @@
                                     {{form.email}}
                                 </div>
                                 <div class="col-12 mb-3">
+                                    <p class="mt-3 mb-0 form-text text-muted">{{ form.desired_delivery_datetime.label }} :</p>
+                                    {{form.desired_delivery_datetime}}
+
+                                    {% if form.desired_delivery_datetime.help_text %}
+                                        <small class="mt-1 form-text text-muted">{{ form.desired_delivery_datetime.help_text }}</small>
+                                    {% endif %}
+                                </div>
+                                <div class="col-12 mb-3">
                                     {{form.address}}
                                 </div>
                                 <div class="col-12 mb-3">
@@ -108,8 +116,8 @@
                     <div class="cart-summary">
                         <h5>Cart Total</h5>
                         <ul class="summary-table">
-                            <li><span>subtotal:</span> <span>₹{{ cart.get_total_price }}</span></li>
-                            <li><span>delivery:</span> <span>Free</span></li>
+                            <li><span>subtotal:</span> <span>₹{{ cart.get_product_price }}</span></li>
+                            <li><span>delivery:</span> <span>₹{{ cart.get_delivery_charge }}</span></li>
                             <li><span>total:</span> <span>₹{{ cart.get_total_price }}</span></li>
                         </ul>
                     </div>

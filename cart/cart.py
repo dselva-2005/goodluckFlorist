@@ -50,9 +50,16 @@ class Cart:
         return sum(items["quantity"] for items in self.cart.values())
     
     def get_total_price(self):
-        return sum( Decimal(item['quantity'])*Decimal(item['price']) for item in self.cart.values())
+        delivery_charge = self.get_delivery_charge()
+        get_product_price = self.get_product_price()
+        return get_product_price + delivery_charge
 
     def clear(self):
         del self.session[settings.CART_SESSION_ID]
         self.save()
-        
+    
+    def get_delivery_charge(self):
+        return sum( Decimal(item['quantity'])*settings.DELIVERY_CHARGE_PER_ITEM for item in self.cart.values() )
+    
+    def get_product_price(self):
+        return sum( Decimal(item['quantity'])*Decimal(item['price']) for item in self.cart.values())

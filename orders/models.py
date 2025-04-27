@@ -40,3 +40,7 @@ class OrderItem(models.Model):
     
     def get_cost(self):
         return self.price* self.quantity
+
+class OrderDetails(models.Model):
+    order = models.OneToOneField(Order, related_name="order_details", on_delete=models.CASCADE)
+    requested_delivery_date = models.DateTimeField()

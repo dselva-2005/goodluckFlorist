@@ -1,5 +1,5 @@
 from django.shortcuts import render,get_object_or_404
-from .models import OrderItem,Order
+from .models import OrderItem,Order,OrderDetails
 from .forms import OrderCreateForm
 from cart.cart import Cart
 from .tasks import order_created,payment_completed
@@ -35,9 +35,11 @@ def order_create(request):
         
         if form.is_valid() and cart.get_total_price() != 0 :
             mode = form.cleaned_data['payment_mode']
+            requested_datetime = form.cleaned_data['desired_delivery_datetime']
             # order id of newly created order.
             order = form.save(commit=False)
             order.save()
+            order_detail = OrderDetails.objects.create(order=order,requested_delivery_date=requested_datetime)
         
             for item in cart:
                 OrderItem.objects.create(order=order,
